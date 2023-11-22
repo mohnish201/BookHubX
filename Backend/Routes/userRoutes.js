@@ -38,7 +38,12 @@ userRouter.post("/login", async (req, res) => {
           { user_id: user._id, username: user.username },
           "masai"
         );
-        res.send({ msg: "Login Successfull", token });
+        res.send({
+          msg: "Login Successfull",
+          username: user.username,
+          role: user.role,
+          token,
+        });
       } else {
         res.status(500).send({ msg: "Incorrect Password" });
       }
