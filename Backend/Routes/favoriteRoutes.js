@@ -10,7 +10,7 @@ favoriteRouter.patch("/addBook", auth, async (req, res) => {
   const userId = req.user.id; // Assuming you store user ID in req.user.id after authentication
 
   try {
-    let favoriteDoc = await favoriteModel.findOne({ user_id: userId });
+    let favoriteDoc = await favoriteModel.find({ user_id: userId });
 
     if (!favoriteDoc) {
       // If no favorites exist for the user, create a new favorite document

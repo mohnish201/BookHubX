@@ -4,6 +4,8 @@ const cors = require("cors");
 const { userRouter } = require("./Routes/userRoutes");
 const { bookRouter } = require("./Routes/bookRoutes");
 const { favoriteRouter } = require("./Routes/favoriteRoutes");
+const { authorRouter } = require("./Routes/authorRoutes");
+const { discussionRouter } = require("./Routes/discussionRouter");
 
 const app = express();
 
@@ -12,6 +14,8 @@ app.use(express.json());
 app.use("/auth", userRouter);
 app.use("/books", bookRouter);
 app.use("/favorite", favoriteRouter);
+app.use("/authors", authorRouter);
+app.use("/discussion", discussionRouter)
 
 app.get("/", (req, res) => {
   res.send("Welcome");
