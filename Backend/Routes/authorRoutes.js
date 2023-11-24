@@ -6,7 +6,7 @@ const { authorModel } = require("../models/authorModel");
 const authorRouter = express.Router()
 
 //get all authors
-authorRouter.get("/", async (req, res) => {
+authorRouter.get("/", auth, async (req, res) => {
     try {
       const author = await authorModel.find();
       if (author) {
@@ -20,7 +20,7 @@ authorRouter.get("/", async (req, res) => {
   });
 
 //get authors by Id
-authorRouter.get("/:author_id",async (req, res) => {
+authorRouter.get("/:author_id",auth,async (req, res) => {
     const { author_id } = req.params;
     try {
       const author = await authorModel.find({ _id: author_id });
@@ -35,19 +35,19 @@ authorRouter.get("/:author_id",async (req, res) => {
   });
 
 //add author
-authorRouter.post("/", async (req, res) => {
+authorRouter.post("/",auth, async (req, res) => {
     const author = req.body;
     try {
       const newAuthor = new authorModel(author);
       await newAuthor.save();
-      res.send({ msg: "Author added successfully", newAuthor });
+      res.status(201).send({ msg: "Author added successfully", newAuthor });
     } catch (error) {
       res.status(500).send(error);
     }
   });
 
 // delete author by id
-authorRouter.delete("/:author_id", async (req, res) => {
+authorRouter.delete("/:author_id", auth , async (req, res) => {
     const { author_id } = req.params;
     try {
       const author = await authorModel.findById(author_id);

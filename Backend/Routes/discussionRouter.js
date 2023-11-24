@@ -35,20 +35,20 @@ discussionRouter.get("/:discussion_id", async (req, res) => {
 
 //add discussions
 discussionRouter.patch("/addComment/:book_id", auth, async (req, res) => {
-  const { user_id, comment } = req.body;
+  const { user_id, comment, username } = req.body;
   const { book_id } = req.params;
   try {
-    let discussionDoc = await discussionModel.find({ book_id: book_id });
+    let discussionDoc = await discussionModel.findOne({ book_id });
 
     if (!discussionDoc) {
       discussionDoc = await discussionModel.create({
         book_id: book_id,
-        userComments: [{ user_id: user_id, comment: comment }],
+        userComments: [{ user_id, username, comment}],
       });
     } else {
       // Check if the discussion_id already exists in the array to prevent duplicates
 
-      discussionDoc.userComments.push({ user_id: user_id, comment: comment });
+      discussionDoc.userComments.push({ user_id, username, comment});
       await discussionDoc.save();
     }
 

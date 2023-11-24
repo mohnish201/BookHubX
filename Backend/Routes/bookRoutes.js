@@ -41,7 +41,7 @@ bookRouter.post("/", auth, async (req, res) => {
   try {
     const newBook = new bookModel(book);
     await newBook.save();
-    res.send({ msg: "Book added successfully", newBook });
+    res.status(201).send({ msg: "Book added successfully", newBook });
   } catch (error) {
     res.status(500).send(error);
   }

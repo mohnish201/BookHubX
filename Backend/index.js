@@ -6,6 +6,7 @@ const { bookRouter } = require("./Routes/bookRoutes");
 const { favoriteRouter } = require("./Routes/favoriteRoutes");
 const { authorRouter } = require("./Routes/authorRoutes");
 const { discussionRouter } = require("./Routes/discussionRouter");
+const { reviewRouter } = require("./Routes/reviewRouter");
 
 const app = express();
 
@@ -15,8 +16,10 @@ app.use("/auth", userRouter);
 app.use("/books", bookRouter);
 app.use("/favorite", favoriteRouter);
 app.use("/authors", authorRouter);
-app.use("/discussion", discussionRouter)
+app.use("/discussion", discussionRouter);
+app.use("/reviews", reviewRouter);
 
+//get all_review by book_id
 app.get("/", (req, res) => {
   res.send("Welcome");
 });

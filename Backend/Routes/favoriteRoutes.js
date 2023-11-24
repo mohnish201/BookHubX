@@ -6,76 +6,86 @@ const favoriteRouter = express.Router();
 
 //add book to favorite
 favoriteRouter.patch("/addBook", auth, async (req, res) => {
-  const { bookId } = req.body; // Assuming you pass the book ID in the request body
-  const userId = req.user.id; // Assuming you store user ID in req.user.id after authentication
+  const { user_id, username } = req.body;
+  const newBook = req.body.book;
 
   try {
-    let favoriteDoc = await favoriteModel.find({ user_id: userId });
+    let user = await favoriteModel.findOne({ user_id });
 
-    if (!favoriteDoc) {
-      // If no favorites exist for the user, create a new favorite document
-      favoriteDoc = await favoriteModel.create({
-        user_id: userId,
-        favorite_books: [req.body],
+    if (!user) {
+      user = await favoriteModel.create({
+        user_id,
+        username, 
+        favorite_books: [newBook],
       });
-    } else {
-      // Check if the bookId already exists in the array to prevent duplicates
-      if (favoriteDoc.favorite_books.includes(bookId)) {
-        return res.status(400).send("Book already exists in favorites");
-      }
-
-      favoriteDoc.favorite_books.push(req.body);
-      await favoriteDoc.save();
+      return res
+        .status(201)
+        .send({ message: "Book added to favorites for a new user" });
     }
+
+    const bookExists = user.favorite_books.some(
+      (book) => book._id === newBook._id
+    );
+
+    if (bookExists) {
+      return res
+        .status(400)
+        .send({ message: "Book already exists in favorites" });
+    }
+
+    user.favorite_books.push(newBook);
+    await user.save();
 
     res.send({ message: "Book added to favorites" });
   } catch (error) {
+    console.error("Error:", error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+//get favorite book list
+favoriteRouter.get("/",auth, async (req, res) => {
+  const { user_id } = req.body;
+  console.log(user_id)
+  try {
+    let userFavorites = await favoriteModel.findOne({user_id});
+    console.log(userFavorites);
+    if (userFavorites) {
+      res.send({ userFavorites: userFavorites });
+    } else {
+      res.status(404).send({ msg: "No favorite books found for this user" });
+    }
+  } catch (error) {
+    console.log(error)
     res.status(500).send(error);
   }
 });
 
 
-//get favorite book list
-favoriteRouter.get("/", auth, async (req, res) => {
+//delete favorite book from Array
+favoriteRouter.delete("/removeBook/:book_id", auth, async (req, res) => {
+  const { book_id } = req.params;
+  const { user_id } = req.body;
   try {
-    const userId = req.body.user_id; // Assuming you store user ID in req.user.id after authentication
-    const userFavorites = await favoriteModel.find({ user_id: userId }); // Filter by user ID
-
-    if (userFavorites.length > 0) {
-      res.send({ favoriteBooks: userFavorites });
-    } else {
-      res.status(404).send({msg:"No favorite books found for this user"});
+    const favoriteDoc = await favoriteModel.findOne({user_id});
+    if (!favoriteDoc) {
+      return res.status(404).send("Favorite not found");
     }
+
+    const bookIndex = favoriteDoc.favorite_books.findIndex((book)=> book._id === book_id);
+    // console.log(bookIndex)
+    if (bookIndex === -1) {
+      return res.status(404).send("Book not found in favorites");
+    }
+
+    favoriteDoc.favorite_books.splice(bookIndex, 1);
+    await favoriteDoc.save();
+
+    res.send({ message: "Book removed from favorites" });
   } catch (error) {
     res.status(500).send(error);
   }
 });
-
-//delete favorite book from Array
-favoriteRouter.delete("/removeBook/:book_id", auth, async (req, res) => {
-    const {book_id } = req.params;
-    const {userId} = req.body
-    try {
-      const favoriteDoc = await favoriteModel.find({user_id:userId});
-      if (!favoriteDoc) {
-        return res.status(404).send("Favorite not found");
-      }
-  
-      const bookIndex = favoriteDoc.favorite_books.indexOf(book_id);
-      if (bookIndex === -1) {
-        return res.status(404).send("Book not found in favorites");
-      }
-  
-      favoriteDoc.favorite_books.splice(bookIndex, 1);
-      await favoriteDoc.save();
-      
-      res.send({ message: "Book removed from favorites" });
-    } catch (error) {
-      res.status(500).send(error);
-    }
-  });
-  
-
 
 module.exports = {
   favoriteRouter,
