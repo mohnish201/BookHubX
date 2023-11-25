@@ -5,9 +5,32 @@ const { bookModel } = require("../models/bookModel");
 const bookRouter = express.Router();
 
 //get all books
-bookRouter.get("/", auth, async (req, res) => {
+bookRouter.get("/", async (req, res) => {
+  const { q, limit, bookTitle, authorName } = req.query;
+
+  let query = {};
+
+  if (q) {
+    query.$or = [
+      { title: { $regex: q, $options: "i" } },
+      { author: { $regex: q, $options: "i" } },
+    ];
+  }
+
+  if (bookTitle) {
+    query.title = { $regex: bookTitle, $options: "i" };
+  } else if (authorName) {
+    query.author = { $regex: authorName, $options: "i" };
+  } else if (authorName && bookTitle) {
+    query.$or = [
+      { title: { $regex: bookTitle, $options: "i" } },
+      { author: { $regex: authorName, $options: "i" } },
+    ];
+  }
+
+  console.log(query);
   try {
-    const books = await bookModel.find();
+    const books = await bookModel.find(query).limit(limit);
     if (books) {
       res.send({ TotalBooks: books.length, books: books });
     } else {

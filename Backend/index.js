@@ -7,6 +7,7 @@ const { favoriteRouter } = require("./Routes/favoriteRoutes");
 const { authorRouter } = require("./Routes/authorRoutes");
 const { discussionRouter } = require("./Routes/discussionRouter");
 const { reviewRouter } = require("./Routes/reviewRouter");
+const {chatbotRouter} = require("./Routes/chatbotRouter")
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use("/favorite", favoriteRouter);
 app.use("/authors", authorRouter);
 app.use("/discussion", discussionRouter);
 app.use("/reviews", reviewRouter);
+app.use("/chatbot", chatbotRouter)
 
 //get all_review by book_id
 app.get("/", (req, res) => {
