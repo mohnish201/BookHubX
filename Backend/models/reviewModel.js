@@ -7,6 +7,7 @@ const reviewSchema = mongoose.Schema(
       user_id: { type: String, required: true },
       rating: { type: String, required: true },
       reviewText: { type: String, required: true },
+      timeStamp:{type:String, required:true}
     }),
   },
   {

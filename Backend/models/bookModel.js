@@ -8,6 +8,7 @@ const bookSchema = mongoose.Schema(
     summary: { type: String, required: true },
     price: { type: Object, required: true },
     image: { type: String, required: true },
+    category: { type: String, required: true },
   },
   {
     versionKey: false,

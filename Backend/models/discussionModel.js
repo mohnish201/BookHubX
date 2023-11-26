@@ -7,6 +7,7 @@ const discussionSchema = mongoose.Schema(
       user_id: { type: String, required: true },
       username:{type:String, required:true},
       comment: { type: String, required: true },
+      timeStamp: {type:String, required:true}
     }),
   },
   {

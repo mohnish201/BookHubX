@@ -39,16 +39,17 @@ discussionRouter.patch("/addComment/:book_id", auth, async (req, res) => {
   const { book_id } = req.params;
   try {
     let discussionDoc = await discussionModel.findOne({ book_id });
-
+    let date = new Date()
+    let timeStamp = date.toDateString()
     if (!discussionDoc) {
       discussionDoc = await discussionModel.create({
         book_id: book_id,
-        userComments: [{ user_id, username, comment}],
+        userComments: [{ user_id, username, comment, timeStamp:timeStamp}],
       });
     } else {
       // Check if the discussion_id already exists in the array to prevent duplicates
 
-      discussionDoc.userComments.push({ user_id, username, comment});
+      discussionDoc.userComments.push({ user_id, username, comment, timeStamp:timeStamp});
       await discussionDoc.save();
     }
 

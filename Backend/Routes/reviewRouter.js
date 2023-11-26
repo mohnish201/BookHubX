@@ -5,7 +5,7 @@ const { reviewModel } = require("../models/reviewModel");
 const reviewRouter = express.Router();
 
 //get All reviews by book_id
-reviewRouter.get("/:book_id",auth, async (req, res) => {
+reviewRouter.get("/:book_id", auth, async (req, res) => {
   const { book_id } = req.params;
 
   try {
@@ -29,22 +29,36 @@ reviewRouter.patch("/addReview/:book_id", auth, async (req, res) => {
 
   try {
     let reviewDoc = await reviewModel.findOne({ book_id });
-
+    let date = new Date();
+    let timeStamp = date.toDateString()
     if (!reviewDoc) {
       reviewDoc = await reviewModel.create({
         book_id,
-        reviews: [{ book_id, user_id, rating, reviewText }],
+        reviews: [
+          {
+            book_id,
+            user_id,
+            rating,
+            reviewText,
+            timeStamp: timeStamp,
+          },
+        ],
       });
     } else {
-        const reviewExist = reviewDoc.reviews.some(
-            (review) => review.user_id === user_id
-          );
+      const reviewExist = reviewDoc.reviews.some(
+        (review) => review.user_id === user_id
+      );
 
-      if(reviewExist){
-        return res.status(400).send({msg: "You already reviewed the book"})
+      if (reviewExist) {
+        return res.status(400).send({ msg: "You already reviewed the book" });
       }
 
-      reviewDoc.reviews.push({ user_id, rating, reviewText });
+      reviewDoc.reviews.push({
+        user_id,
+        rating,
+        reviewText,
+        timeStamp: timeStamp,
+      });
       await reviewDoc.save();
     }
     res.send({ msg: "Thankyou for review and rating" });
@@ -52,9 +66,6 @@ reviewRouter.patch("/addReview/:book_id", auth, async (req, res) => {
     res.status(500).send(error);
   }
 });
-
-
-
 
 module.exports = {
   reviewRouter,
