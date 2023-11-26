@@ -32,7 +32,7 @@ bookRouter.get("/", async (req, res) => {
   try {
     const books = await bookModel.find(query).limit(limit);
     if (books) {
-      res.send({ TotalBooks: books.length, books: books });
+      res.send(books);
     } else {
       res.send("No Book are available in database");
     }

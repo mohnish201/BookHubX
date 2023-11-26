@@ -1,0 +1,9 @@
+/* Initial opacity of the icon group */
+.icon-group {
+    opacity: 0;
+}
+
+/* Show icon group on hover */
+.image-container:hover .icon-group {
+    opacity: 1;
+}
