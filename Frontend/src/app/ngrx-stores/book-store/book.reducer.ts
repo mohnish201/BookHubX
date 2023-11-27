@@ -16,6 +16,6 @@ const initState: bookAppState = {
 }
 
 export const bookReducer = createReducer(initState,
-    on(loadBooks, (state) => ({ ...state, loading: true })),
-    on(loadBooksSucces, (state, action) => ({ ...state, loading: false, bookList: action.bookList }))
+    on(loadBooks, (state) => { return { ...state, loading: true } }),
+    on(loadBooksSucces, (state, action) => { return { ...state, loading: false, bookList: [...action.bookList] } })
 )

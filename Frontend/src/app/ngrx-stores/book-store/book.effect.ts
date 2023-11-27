@@ -8,17 +8,18 @@ import { loadBooks, loadBooksSucces } from './book.action';
 
 export class BooksEffects {
 
-    loadBooks$ = createEffect(() =>
-        this.actions$.pipe(
-            ofType(loadBooks),
-            exhaustMap((action) => {
-                return this.bookService.getbookData().pipe(
-                    map((data) => { return loadBooksSucces({ bookList: data }) }),
-                    catchError(() => EMPTY)
-                )
-            })
-        )
-    )
+    // loadBooks$ = createEffect(() =>
+    //     this.actions$.pipe(
+    //         ofType(loadBooks),
+    //         exhaustMap((action) => {
+              
+    //             return this.bookService.getbookData().pipe(
+    //                 map((data) => { return loadBooksSucces({ bookList: data }) }),
+    //                 catchError(() => EMPTY)
+    //             )
+    //         })
+    //     )
+    // )
 
     constructor(private actions$: Actions, private bookService: BookService) { }
 }

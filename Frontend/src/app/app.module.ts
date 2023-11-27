@@ -21,7 +21,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { NgFor } from '@angular/common';
     FavoritePageComponent,
     CheckoutPageComponent,
     NavbarComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    SkeletonComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +45,9 @@ import { NgFor } from '@angular/common';
     BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot({ bookReducer: bookReducer }),
-    EffectsModule.forRoot([BooksEffects]),
-    MatIconModule, MatInputModule, MatFormFieldModule, NgFor
+    EffectsModule.forRoot([]),
+    MatIconModule, MatInputModule, MatFormFieldModule, NgFor,NgIf,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

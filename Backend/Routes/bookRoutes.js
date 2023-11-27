@@ -6,7 +6,7 @@ const bookRouter = express.Router();
 
 //get all books
 bookRouter.get("/", async (req, res) => {
-  const { q, limit, bookTitle, authorName } = req.query;
+  const { q, limit, bookTitle, authorName, category } = req.query;
 
   let query = {};
 
@@ -15,6 +15,9 @@ bookRouter.get("/", async (req, res) => {
       { title: { $regex: q, $options: "i" } },
       { author: { $regex: q, $options: "i" } },
     ];
+  }
+  if(category){
+    query.category = category
   }
 
   if (bookTitle) {
