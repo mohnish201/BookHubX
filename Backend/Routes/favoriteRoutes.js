@@ -18,9 +18,7 @@ favoriteRouter.patch("/addBook", auth, async (req, res) => {
         username, 
         favorite_books: [newBook],
       });
-      return res
-        .status(201)
-        .send({ message: "Book added to favorites for a new user" });
+      return res.send({ message: "Book added to favorites for a new user" });
     }
 
     const bookExists = user.favorite_books.some(
@@ -28,9 +26,7 @@ favoriteRouter.patch("/addBook", auth, async (req, res) => {
     );
 
     if (bookExists) {
-      return res
-        .status(400)
-        .send({ message: "Book already exists in favorites" });
+      return res.send({ message: "Book already exists in favorites" });
     }
 
     user.favorite_books.push(newBook);

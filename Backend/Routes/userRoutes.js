@@ -45,11 +45,11 @@ userRouter.post("/login", async (req, res) => {
           token,
         });
       } else {
-        res.status(500).send({ msg: "Incorrect Password" });
+        res.send({ msg: "Incorrect Password" });
       }
     });
   } else {
-    res.status(500).send("Incorrect Email");
+    res.send({msg:"Incorrect Email"});
   }
 });
 

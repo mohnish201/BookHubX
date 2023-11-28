@@ -28,9 +28,7 @@ cartRouter.patch("/addBook", auth, async (req, res) => {
     );
 
     if (bookExists) {
-      return res
-        .status(400)
-        .send({ message: "Book already exists in cart" });
+      return res.send({ message: "Book already exists in cart" });
     }
 
     user.cart_books.push(newBook);

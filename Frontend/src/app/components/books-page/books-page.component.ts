@@ -7,6 +7,7 @@ import { BooksI } from '../../ngrx-stores/book-store/book.model';
 import { bookAppState } from '../../ngrx-stores/book-store/book.reducer';
 import { bookList, loading } from '../../ngrx-stores/book-store/book.selector';
 import { BookService } from '../../services/book.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-books-page',
@@ -39,7 +40,7 @@ export class BooksPageComponent implements OnInit, OnDestroy {
   ]
 
   selectedCategory: string = '';
-  selectedAuthor:string="";
+  selectedAuthor: string = "";
   public skeleton = new Array(20).fill(0);
 
 
@@ -50,7 +51,7 @@ export class BooksPageComponent implements OnInit, OnDestroy {
     // this.bookSubscribe = this.store.select(bookList).subscribe((data) => {
     //   this.bookList = data
     // })
-    
+
 
 
   }
@@ -73,7 +74,7 @@ export class BooksPageComponent implements OnInit, OnDestroy {
       bookTitle: this.bookTitle,
       authorName: this.selectedAuthor
     };
-     
+
     // this.store.dispatch(loadBooks())
     this.loading = true
     this.bookService.getbookData(query).subscribe((data) => {
@@ -81,7 +82,7 @@ export class BooksPageComponent implements OnInit, OnDestroy {
       this.bookList = data;
       this.loading = false
     });
-   
+
 
     // this.store.select(loading).subscribe((data) => this.loading = data)
   }
@@ -97,17 +98,17 @@ export class BooksPageComponent implements OnInit, OnDestroy {
   selectCategory(category: string) {
     this.selectedCategory = category;
 
-   
-    
+
+
     console.log(this.selectedCategory)
     this.fetchBookData()
   }
 
-  selectAuthor(author:string){
-    
+  selectAuthor(author: string) {
+
     this.selectedAuthor = author;
 
-    
+
     console.log(this.selectedAuthor)
     this.fetchBookData()
   }
@@ -121,7 +122,11 @@ export class BooksPageComponent implements OnInit, OnDestroy {
     this.favoriteColor = "red"
   }
 
-  constructor(private bookService: BookService, private store: Store<{ bookReducer: bookAppState }>) { }
+  addToCart(book:any){
+    this.cartService.addToCart(book).subscribe((data)=> console.log(data))
+  }
+
+  constructor(private bookService: BookService, private store: Store<{ bookReducer: bookAppState }>, private cartService: CartService) { }
 
 
 }

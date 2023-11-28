@@ -19,11 +19,15 @@ import { bookReducer } from './ngrx-stores/book-store/book.reducer';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSnackBar} from '@angular/material/snack-bar';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
+import { AuthService } from './services/auth.service';
+import { BookService } from './services/book.service';
+import { CartService } from './services/cart.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,7 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
     MatIconModule, MatInputModule, MatFormFieldModule, NgFor,NgIf,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthService, BookService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

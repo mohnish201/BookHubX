@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:"profile", component:ProfilePageComponent},
   {path:"cart", component:CartPageComponent},
   {path:"books", component:BooksPageComponent},
-  {path:"books/:id", component:BooksDetailPageComponent},
+  {path:"books/details/:id", component:BooksDetailPageComponent},
   {path:"favorites", component:FavoritePageComponent}
 ];
 

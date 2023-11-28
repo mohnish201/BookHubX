@@ -1,1 +1,28 @@
-<p>books-detail-page works!</p>
+
+<a class="flex m-auto justify-center mt-5 flex-col bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-[70%] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+    <img class="w-full h-[600px] block m-auto rounded-t-lg md:rounded-none md:rounded-s-lg" src={{bookData?.image}} alt="">
+    <div class="flex flex-col gap-5 p-4 leading-normal">
+        <p class="mb-2 text-3xl font-medium tracking-tight text-gray-900 dark:text-white">{{bookData?.title}}</p>
+         <p class="text-lg text-gray-700">{{bookData?.author}}</p>
+        <div>
+            <h2 class="text-2xl">Summary :</h2>
+            <p class="text-lg font-normal w-full h-64 overflow-auto text-gray-700 dark:text-gray-400">{{bookData?.summary}}</p>
+            
+             
+        </div>
+
+        <h2>Price: ${{bookData?.price?.value}}</h2>
+
+        <div class="flex ">
+            <button (click)="addToCart(bookData)" class="text-lg block hover:bg-blue-800 bg-blue-600 p-2 text-white rounded-xl">
+                Add To Cart
+             </button>
+    
+             <button (click)="addToFavorite(bookData)" class="text-lg block ml-10 bg-red-600 hover:bg-red-700 p-2 text-white rounded-xl">
+                Add To Favorite
+             </button>
+        </div>
+         
+        
+    </div>
+</a>
