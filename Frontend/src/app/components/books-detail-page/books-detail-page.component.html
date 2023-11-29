@@ -15,14 +15,16 @@
 
         <div class="flex ">
             <button (click)="addToCart(bookData)" class="text-lg block hover:bg-blue-800 bg-blue-600 p-2 text-white rounded-xl">
-                Add To Cart
+               🛒 Add To Cart
              </button>
     
              <button (click)="addToFavorite(bookData)" class="text-lg block ml-10 bg-red-600 hover:bg-red-700 p-2 text-white rounded-xl">
-                Add To Favorite
+               ❤ Add To Favorite
              </button>
         </div>
          
         
     </div>
 </a>
+
+<app-discussion [book_id]="bookData?._id"></app-discussion>

@@ -1,194 +1,130 @@
-<div class="p-5">
-    <ng-container *ngIf="loading; else elseBlock">
-      <div class="flex flex-wrap gap-10 justify-center">
-        <div *ngFor="let el of skeleton">
-          <app-skeleton></app-skeleton>
-        </div>
-      </div>
-    </ng-container>
+<p class="text-center p-2 font-serif text-4xl font-medium">Your Cart 🛒</p>
 
-    <ng-template #elseBlock>
-      <div
-        class="p-6 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700"
-      >
-        <div class="flex flex-wrap justify-around gap-10">
-          <div *ngFor="let book of cartList; index as i">
-            <div class="shrink-0" >
-              <div
-                class="m-auto flex justify-center w-[90%] relative image-container cursor-pointer"
-              >
-                <img
-                  src="{{ book.image }}"
-                  alt=""
-                  class="h-[400px] md:h-[350px] rounded-2xl hover:drop-shadow-xl"
-                />
-                <div
-                  class="flex icon-group opacity-0 transition-opacity duration-300 flex-col space-y-1 top-[78%] left-[85%] absolute"
+<div class="p-5">
+  <ng-container *ngIf="loading; else elseBlock">
+    <div class="flex flex-wrap gap-10 justify-center">
+      <div *ngFor="let el of skeleton">
+        <app-skeleton></app-skeleton>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #elseBlock>
+    <div
+      class="p-6 border-2 bg-gray-100 justify-around gap-20 flex flex-col sm:flex-col md:flex-col lg:flex-row xl:flex-row border-gray-200 border-dashed rounded-lg dark:border-gray-700"
+    >
+      <div class="flex flex-col overflow-auto gap-10">
+        <div *ngFor="let book of cartList; index as i">
+          <a
+            class="flex flex-col items-center bg-white border w-full border-gray-200 rounded-lg shadow md:flex-row md:max-w-3xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+          >
+            <img
+              class="rounded-t-lg h-56 md:rounded-none md:rounded-s-lg"
+              src="{{ book?.image }}"
+              alt=""
+            />
+            <div class="flex items-center justify-between pl-4 pr-4 w-full">
+              <div class="flex flex-col justify-between p-4 leading-normal">
+                <p
+                  class="mb-2 text-2xl font-medium tracking-tight text-gray-900 dark:text-white"
                 >
-                  <svg
-                    class="w-10 h-10"
-                    viewBox="-5.04 -5.04 34.08 34.08"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g id="SVGRepo_bgCarrier" stroke-width="0">
-                      <rect
-                        x="-5.04"
-                        y="-5.04"
-                        width="34.08"
-                        height="34.08"
-                        rx="17.04"
-                        fill="#ffffff"
-                        strokewidth="0"
-                      ></rect>
-                    </g>
-                    <g
-                      id="SVGRepo_tracerCarrier"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></g>
-                    <g id="SVGRepo_iconCarrier">
-                      <path
-                        d="M3.86376 16.4552C3.00581 13.0234 2.57684 11.3075 3.47767 10.1538C4.3785 9 6.14721 9 9.68462 9H14.3153C17.8527 9 19.6214 9 20.5222 10.1538C21.4231 11.3075 20.9941 13.0234 20.1362 16.4552C19.5905 18.6379 19.3176 19.7292 18.5039 20.3646C17.6901 21 16.5652 21 14.3153 21H9.68462C7.43476 21 6.30983 21 5.49605 20.3646C4.68227 19.7292 4.40943 18.6379 3.86376 16.4552Z"
-                        stroke="#000000"
-                        stroke-width="1.5"
-                      ></path>
-                      <path
-                        opacity="0.5"
-                        d="M19.5 9.5L18.7896 6.89465C18.5157 5.89005 18.3787 5.38775 18.0978 5.00946C17.818 4.63273 17.4378 4.34234 17.0008 4.17152C16.5619 4 16.0413 4 15 4M4.5 9.5L5.2104 6.89465C5.48432 5.89005 5.62128 5.38775 5.90221 5.00946C6.18199 4.63273 6.56216 4.34234 6.99922 4.17152C7.43808 4 7.95872 4 9 4"
-                        stroke="#000000"
-                        stroke-width="1.5"
-                      ></path>
-                      <path
-                        d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4C15 4.55228 14.5523 5 14 5H10C9.44772 5 9 4.55228 9 4Z"
-                        stroke="#000000"
-                        stroke-width="1.5"
-                      ></path>
-                    </g>
-                  </svg>
-                  <!--  -->
-                  <svg
-                    viewBox="-12.24 -12.24 60.48 60.48"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    aria-hidden="true"
-                    role="img"
-                    class="iconify iconify--twemoji"
-                    preserveAspectRatio="xMidYMid meet"
-                    fill="#000000"
-                    stroke="#000000"
-                    stroke-width="0.00036"
-                  >
-                    <g id="SVGRepo_bgCarrier" stroke-width="0">
-                      <rect
-                        x="-12.24"
-                        y="-12.24"
-                        width="60.48"
-                        height="60.48"
-                        rx="30.24"
-                        fill="#ffffff"
-                        strokewidth="0"
-                      ></rect>
-                    </g>
-                    <g
-                      id="SVGRepo_tracerCarrier"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></g>
-                    <g id="SVGRepo_iconCarrier">
-                      <path
-                        fill="#DD2E44"
-                        d="M35.885 11.833c0-5.45-4.418-9.868-9.867-9.868c-3.308 0-6.227 1.633-8.018 4.129c-1.791-2.496-4.71-4.129-8.017-4.129c-5.45 0-9.868 4.417-9.868 9.868c0 .772.098 1.52.266 2.241C1.751 22.587 11.216 31.568 18 34.034c6.783-2.466 16.249-11.447 17.617-19.959c.17-.721.268-1.469.268-2.242z"
-                      ></path>
-                    </g>
-                  </svg>
-                  <!--  -->
-                </div>
+                  <span class="text-red-500">Title:</span> {{ book?.title }}
+                </p>
+                <p
+                  class="mb-3 text-[17px] font-medium text-gray-700 dark:text-gray-400"
+                >
+                  <span class="text-red-500">Author:</span> {{ book?.author }}
+                </p>
+
+                <p class="text-[17px] font-medium">
+                  <span class="text-red-500">Category:</span>
+                  {{ book?.category }}
+                </p>
+                <p class="text-[20px] font-medium">
+                  <span class="text-red-500">Price:</span> ${{
+                    book?.price?.value * book.quantity
+                  }}
+                </p>
               </div>
-              <div class="ml-7 mr-7 mt-4 flex flex-col space-y-1">
-                <a
-                  class="text-xl font-medium text-ellipsis whitespace-nowrap overflow-hidden w-[180px]"
-                  >{{ book.title }}</a
+
+              <div class="flex flex-col gap-10">
+                 <div class="flex gap-3 items-center justify-center">
+                  <button (click)="increaseQuantity(book)" class="border p-1 rounded-full bg-blue-600">➕</button>
+                  <p class="text-lg font-medium">{{ book.quantity || 1 }}</p>
+                  <button (click)="decreaseQuantity(book)" class="border p-1 rounded-full bg-red-600">➖</button>
+                 </div>
+                <button
+                  (click)="removeFromCart(book._id)"
+                  mat-raised-button
+                  color="warn"
                 >
-                <div class="flex items-center">
-                  <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                    <svg
-                      class="w-4 h-4 text-orange-500"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 22 20"
-                    >
-                      <path
-                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                      />
-                    </svg>
-                    <svg
-                      class="w-4 h-4 text-orange-500"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 22 20"
-                    >
-                      <path
-                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                      />
-                    </svg>
-                    <svg
-                      class="w-4 h-4 text-orange-500"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 22 20"
-                    >
-                      <path
-                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                      />
-                    </svg>
-                    <svg
-                      class="w-4 h-4 text-orange-500"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 22 20"
-                    >
-                      <path
-                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                      />
-                    </svg>
-                    <svg
-                      class="w-4 h-4 text-gray-200 dark:text-gray-600"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 22 20"
-                    >
-                      <path
-                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                      />
-                    </svg>
-                  </div>
-                  <span
-                    class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3"
-                    >5.0</span
-                  >
-                </div>
-                <h4 class="font-bold mt-2">{{ book.author }}</h4>
-                <span class="text-2xl font-medium text-red-500 dark:text-white"
-                  >${{ book.price.value }}</span
-                >
+                  🗑 Remove
+                </button>
               </div>
             </div>
-          </div>
-        </div>
-        <div
-          *ngIf="cartList.length === 0"
-          class="flex justify-center items-center"
-        >
-          <img
-            src="https://tjconcepts.in/wp-content/themes/tjcon/assets/img/norecordfound.png"
-            alt=""
-          />
+          </a>
         </div>
       </div>
-    </ng-template>
-  </div>
+
+      <div class="w-full sm:w-full md:w-full lg:w-96 xl:w-96">
+        <p class="text-xl text-red-500 font-medium">🚚 Free Shipping</p>
+        <p>Get free shipping on all orders over $200</p>
+
+        <div class="relative overflow-x-auto border rounded-md">
+          <p class="pl-6 text-xl font-medium bg-gray-300 text-gray-600 p-2">
+            Cart Total
+          </p>
+
+          <table
+            class="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400"
+          >
+            <tbody>
+              <tr class="bg-white dark:bg-gray-800">
+                <th
+                  scope="row"
+                  class="px-6 py-4 text-lg font-serif font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  Subtotal:
+                </th>
+                <td class="px-6 text-lg py-4">{{ subTotal | currency }}</td>
+              </tr>
+              <tr class="bg-white dark:bg-gray-800">
+                <th
+                  scope="row"
+                  class="px-6 py-4 text-lg font-serif font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  Shipping
+                </th>
+                <td class="px-6 text-lg py-4">{{ shipping | currency }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="font-semibold bg-red-500 text-white dark:text-white">
+                <th scope="row" class="px-6 font-serif py-3 text-lg">Total</th>
+                <td class="px-6 text-lg py-3">
+                  {{ subTotal + shipping | currency }}
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+          <div class="m-auto w-[96%] my-10">
+            <button
+              [disabled]="subTotal === 0"
+              type="button"
+              class="text-white disabled:bg-blue-300 w-full disabled:cursor-not-allowed bg-[#2557D6] hover:bg-[#2557D6]/90 focus:ring-4 focus:ring-[#2557D6]/50 focus:outline-none font-medium rounded-md text-sm px-5 py-3 text-center inline-flex items-center justify-center dark:focus:ring-[#2557D6]/50 me-2 mb-2"
+            >
+              ✔ Checkout to Payment
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="cartLength === 0" class="flex justify-center items-center">
+        <img
+          src="https://tjconcepts.in/wp-content/themes/tjcon/assets/img/norecordfound.png"
+          alt=""
+        />
+      </div>
+    </div>
+  </ng-template>
+</div>

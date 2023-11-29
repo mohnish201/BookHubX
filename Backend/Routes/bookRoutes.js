@@ -46,7 +46,7 @@ bookRouter.get("/", async (req, res) => {
 
 //get book details by id
 
-bookRouter.get("/:book_id", async (req, res) => {
+bookRouter.get("/:book_id",auth, async (req, res) => {
   const { book_id } = req.params;
   try {
     const book = await bookModel.find({ _id: book_id });

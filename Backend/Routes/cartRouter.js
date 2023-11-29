@@ -18,9 +18,7 @@ cartRouter.patch("/addBook", auth, async (req, res) => {
         username, 
         cart_books: [newBook],
       });
-      return res
-        .status(201)
-        .send({ message: "Book added to cart for a new user" });
+      return res.send({ message: "Book added to cart for a new user" });
     }
 
     const bookExists = user.cart_books.some(
@@ -65,23 +63,23 @@ cartRouter.delete("/removeBook/:book_id", auth, async (req, res) => {
   const { book_id } = req.params;
   const { user_id } = req.body;
   try {
-    const favoriteDoc = await cartModel.findOne({user_id});
-    if (!favoriteDoc) {
-      return res.status(404).send("Favorite not found");
+    const cartDoc = await cartModel.findOne({user_id});
+    if (!cartDoc) {
+      return res.status(404).send("Cart not found");
     }
 
-    const bookIndex = favoriteDoc.favorite_books.findIndex((book)=> book._id === book_id);
+    const bookIndex = cartDoc.cart_books.findIndex((book)=> book._id === book_id);
     // console.log(bookIndex)
     if (bookIndex === -1) {
-      return res.status(404).send("Book not found in favorites");
+      return res.status(404).send("Book not found in cart");
     }
 
-    favoriteDoc.favorite_books.splice(bookIndex, 1);
-    await favoriteDoc.save();
+    cartDoc.cart_books.splice(bookIndex, 1);
+    await cartDoc.save();
 
-    res.send({ message: "Book removed from favorites" });
+    res.send({ message: "Book removed from Cart" });
   } catch (error) {
-    res.status(500).send(error);
+    res.send(error);
   }
 });
 

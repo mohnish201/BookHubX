@@ -5,33 +5,34 @@ const { discussionModel } = require("../models/discussionModel");
 const discussionRouter = express.Router();
 
 //get all discussions
-discussionRouter.get("/", async (req, res) => {
+discussionRouter.get("/:book_id", auth, async (req, res) => {
+  const {book_id} = req.params
   try {
-    const discussions = await discussionModel.find();
-    if (discussions) {
-      res.send({ discussions: discussions });
-    } else {
-      res.status(404).send("No discussions are found");
-    }
+    const discussions = await discussionModel.findOne({book_id});
+    if (!discussions) {
+      return res.send({msg:"Be the first to Create Discussions"});
+    } 
+
+    res.send(discussions)
   } catch (error) {
     res.send(500).send(error);
   }
 });
 
 //get discussions by Id
-discussionRouter.get("/:discussion_id", async (req, res) => {
-  const { discussion_id } = req.params;
-  try {
-    const discussion = await discussionModel.findById(discussion_id);
-    if (discussion) {
-      res.send(discussion);
-    } else {
-      res.status(404).send("No discussion found");
-    }
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+// discussionRouter.get("/:discussion_id", async (req, res) => {
+//   const { discussion_id } = req.params;
+//   try {
+//     const discussion = await discussionModel.findById(discussion_id);
+//     if (discussion) {
+//       res.send(discussion);
+//     } else {
+//       res.status(404).send("No discussion found");
+//     }
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
 
 //add discussions
 discussionRouter.patch("/addComment/:book_id", auth, async (req, res) => {

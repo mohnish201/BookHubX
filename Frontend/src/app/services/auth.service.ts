@@ -13,6 +13,10 @@ export class AuthService {
     const storedIsAuth = localStorage.getItem('isAuth');
     const initialIsAuth = storedIsAuth ? JSON.parse(storedIsAuth) : false;
     this.isAuthSubject = new BehaviorSubject<boolean>(initialIsAuth);
+
+    const storedUserData = localStorage.getItem('userData');
+    const initialUserData = storedUserData ? JSON.parse(storedUserData) : null;
+    this.userDataSubject = new BehaviorSubject<any>(initialUserData);
   }
 
   login(loginData: any): Observable<any> {

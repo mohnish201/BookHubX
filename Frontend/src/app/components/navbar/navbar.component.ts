@@ -40,7 +40,10 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authService.changeIsAuth(false)
     localStorage.setItem("isAuth", JSON.stringify(false))
+    localStorage.removeItem("isAuth")
+    localStorage.removeItem("userData")
     this.openSnackBar("You are logged out", "close")
+    window.location.reload()
     this.router.navigate(['/'])
   }
 

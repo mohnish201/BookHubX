@@ -31,6 +31,7 @@ export class LoginPageComponent {
       console.log(data);
 
       this.authService.updateUserData(data)
+      localStorage.setItem("userData", JSON.stringify(data))
       
       this.authService.getUserData().subscribe((data) => {
         this.userData = data
@@ -48,32 +49,7 @@ export class LoginPageComponent {
       localStorage.setItem("isAuth", JSON.stringify(this.isAuth) )
 
     })
-    // const loginData = {
-    //   email: this.email,
-    //   password: this.password
-    // }
-    // this.authService.login(loginData).subscribe((data) => {
-    //   // console.log(data);
-    //   // this.userData=data
-    //   console.log(data)
 
-    //   this.authService.setUserData(data)
-    //   this.authService.getUserData().subscribe((data) => this.userData = data)
-    //   console.log(this.userData.username)
-
-    //   if (this.userData && this.userData.msg) {
-    //     const message = this.userData.msg.toString();
-    //     this.openSnackBar(message, 'Close');
-    //   }
-
-    //   if(this.userData.msg=="Login Successfull"){
-    //     this.router.navigate(['/'])
-    //   }
-
-    //   console.log(this.isAuth)
-
-
-    // })
   }
 
 

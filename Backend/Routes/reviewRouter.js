@@ -11,12 +11,10 @@ reviewRouter.get("/:book_id", auth, async (req, res) => {
   try {
     const reviews = await reviewModel.findOne({ book_id });
     if (!reviews) {
-      return res
-        .status(404)
-        .send({ msg: "No reviews are posted on this book" });
+      return res.send({ msg: "No reviews are posted on this book , be the first to review" });
     }
 
-    res.send({ reviews });
+    res.json(reviews);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -25,7 +23,7 @@ reviewRouter.get("/:book_id", auth, async (req, res) => {
 //post review on particular book
 reviewRouter.patch("/addReview/:book_id", auth, async (req, res) => {
   const { book_id } = req.params;
-  const { user_id, rating, reviewText } = req.body;
+  const { user_id, rating, reviewText, username } = req.body;
 
   try {
     let reviewDoc = await reviewModel.findOne({ book_id });
@@ -38,6 +36,7 @@ reviewRouter.patch("/addReview/:book_id", auth, async (req, res) => {
           {
             book_id,
             user_id,
+            username,
             rating,
             reviewText,
             timeStamp: timeStamp,
@@ -50,11 +49,12 @@ reviewRouter.patch("/addReview/:book_id", auth, async (req, res) => {
       );
 
       if (reviewExist) {
-        return res.status(400).send({ msg: "You already reviewed the book" });
+        return res.send({ msg: "You already reviewed the book" });
       }
 
       reviewDoc.reviews.push({
         user_id,
+        username,
         rating,
         reviewText,
         timeStamp: timeStamp,
