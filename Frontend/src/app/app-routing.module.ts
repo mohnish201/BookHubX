@@ -10,18 +10,19 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { AuthGuard } from './Private_Routes/auth.guard';
 
 const routes: Routes = [
   {path:"", component:HomePageComponent},
   {path:"login", component:LoginPageComponent},
   {path:"register", component:RegisterPageComponent},
-  {path:"profile", component:ProfilePageComponent},
-  {path:"cart", component:CartPageComponent},
+  {path:"profile", component:ProfilePageComponent, canActivate:[AuthGuard]},
+  {path:"cart", component:CartPageComponent, canActivate:[AuthGuard]},
   {path:"books", component:BooksPageComponent},
-  {path:"books/details/:id", component:BooksDetailPageComponent},
-  {path:"favorites", component:FavoritePageComponent},
+  {path:"books/details/:id", component:BooksDetailPageComponent, canActivate:[AuthGuard]},
+  {path:"favorites", component:FavoritePageComponent, canActivate:[AuthGuard]},
   {path:"authors", component:AuthorPageComponent},
-  {path:"authors/details/:id", component:AuthorDetailsComponent}
+  {path:"authors/details/:id", component:AuthorDetailsComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

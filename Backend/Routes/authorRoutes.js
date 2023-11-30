@@ -6,7 +6,7 @@ const { authorModel } = require("../models/authorModel");
 const authorRouter = express.Router()
 
 //get all authors
-authorRouter.get("/", auth, async (req, res) => {
+authorRouter.get("/", async (req, res) => {
     try {
       const author = await authorModel.find();
       if (author) {

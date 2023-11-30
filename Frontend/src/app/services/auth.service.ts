@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   register(registerData:any):Observable<any>{
-    return this.http.post<any>("http://localhost:4800/auth/login", registerData)
+    return this.http.post<any>("http://localhost:4800/auth/register", registerData)
 
   }
 

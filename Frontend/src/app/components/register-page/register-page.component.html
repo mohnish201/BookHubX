@@ -1,0 +1,154 @@
+<!-- <img src="assets/Login-pana.png" class="w-[45%] absolute left-[26%] m-auto" alt=""> -->
+
+<form
+#userForm="ngForm"
+  (ngSubmit)="onSubmit(userForm)"
+  novalidate 
+  class="max-w-sm mx-auto m-auto z-10 border mt-16 p-4 border-[#F65D4E] outline-[#F65D4E] rounded-lg outline outline-2 outline-offset-2 ..."
+>
+  <a
+    class="text-center m-auto block pb-5 text-2xl mb-4 font-medium text-red-500"
+    >Create new Account</a
+  >
+
+  <div class="mb-5">
+    <label
+      for="email"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Create Username</label
+    >
+    <input
+      type="text"
+      [(ngModel)]="username"
+      name="username"
+      id="username"
+      #usernameField="ngModel"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="John"
+      required
+    />
+
+    <div
+        *ngIf="usernameField.invalid && (usernameField.dirty || usernameField.touched)"
+        class="text-red-500 text-sm"
+      >
+        <div *ngIf="usernameField.errors?.['required']">
+          Username is required.
+        </div>
+        <div *ngIf="usernameField.errors?.['minlength']">
+          Username must be at least 3 characters long.
+        </div>
+      </div>
+  </div>
+
+  <div class="mb-5">
+    <label
+      for="email"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Your email</label
+    >
+    <input
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      #emailField="ngModel"
+      id="email"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="example@gmail.com"
+      required
+      email
+    />
+    <div
+      *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)"
+      class="text-red-500 text-sm"
+    >
+      <div *ngIf="emailField.errors?.['required']">Email is required.</div>
+      <div *ngIf="emailField.errors?.['email']">Invalid email format.</div>
+    </div>
+  </div>
+  <div class="mb-5">
+    <label
+      for="password"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Create password</label
+    >
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      #passwordField="ngModel"
+      id="password"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="*********"
+      required
+      (input)="validatePassword()"
+    />
+
+    <div class="text-red-500 text-sm" *ngIf="isPassError">{{ passError }}</div>
+    <div
+      *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)"
+      class="text-red-500 text-sm"
+    >
+      <div *ngIf="passwordField.errors?.['required']">Password is required.</div>
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <label
+      for="password"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Confirm Password</label
+    >
+    <input
+      type="password"
+      [(ngModel)]="confirm_password"
+      name="confirm_password"
+      #confirm_password_Feild="ngModel"
+      id="confirm_password"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="*********"
+      required
+      (input)="confirmPasswordChecker()"
+    />
+
+    <div class="text-red-500 text-sm" *ngIf="isPassMatch">
+        {{ passMatch }}
+      </div>
+      <div
+        *ngIf="
+        confirm_password_Feild.invalid &&
+          (confirm_password_Feild.dirty || confirm_password_Feild.touched)
+        "
+        class="text-red-500 text-sm"
+      >
+        <div *ngIf="confirm_password_Feild.errors?.['required']">
+          Confirmation password is required.
+        </div>
+      </div>
+  </div>
+  <div class="flex items-start mb-5">
+    <div class="flex items-center h-5">
+      <input
+        id="remember"
+        type="checkbox"
+        value=""
+        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+        required
+      />
+    </div>
+    <label
+      for="remember"
+      class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+      >Remember me</label
+    >
+  </div>
+
+  <p routerLink="/login" class="text-center">Already have account? <span class="text-blue-500 cursor-pointer" routerLink="/login">Sign in</span> </p>
+
+  <button
+    type="submit"
+    class="text-white block m-auto bg-[#F65D4E] hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  >
+    Register
+  </button>
+</form>

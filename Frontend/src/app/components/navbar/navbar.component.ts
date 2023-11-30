@@ -43,8 +43,8 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem("isAuth")
     localStorage.removeItem("userData")
     this.openSnackBar("You are logged out", "close")
-    window.location.reload()
     this.router.navigate(['/'])
+    // window.location.reload()
   }
 
   openSnackBar(message: string, action: string) {
