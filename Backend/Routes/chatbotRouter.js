@@ -14,7 +14,7 @@ chatbotRouter.post("/", async (req, res) => {
       {
         name: "book_suggestion",
         description:
-          "Provide book title and author with brief and concise summary suggestions to user based on author name or book title and if the book is not present in database then provide some details of that book like brief and concise description of that book ",
+          " This function provides book suggestions based on author names or book titles. It offers book title , author name, and image of book for matched books and provides brief descriptions for books not found in the api or database. Please input the author's name or book title you'd like recommendations for.",
         parameters: {
           type: "object",
           properties: {
@@ -37,8 +37,8 @@ chatbotRouter.post("/", async (req, res) => {
             );
             return {
               response: response.data,
-              title: response.data.books.title,
-              author: response.data.books.author,
+              title: response.data.title,
+              author: response.data.author
             };
           } catch (err) {
             return err;
@@ -50,7 +50,7 @@ chatbotRouter.post("/", async (req, res) => {
   });
 
   const response1 = await chat.sendMessage(message);
-  res.send(response1.content);
+  res.json(response1.content);
 });
 
 module.exports = {

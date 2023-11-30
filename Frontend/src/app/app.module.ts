@@ -26,7 +26,7 @@ import {Component} from '@angular/core';
 import {MatTabsModule} from '@angular/material/tabs';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import { NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { AuthService } from './services/auth.service';
@@ -35,6 +35,7 @@ import { CartService } from './services/cart.service';
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { FavoriteService } from './services/favorite.service';
 import { ReviewDiscussionService } from './services/review-discussion.service';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ReviewDiscussionService } from './services/review-discussion.service';
     NavbarComponent,
     LoginPageComponent,
     SkeletonComponent,
-    DiscussionComponent
+    DiscussionComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { ReviewDiscussionService } from './services/review-discussion.service';
     StoreModule.forRoot({ bookReducer: bookReducer }),
     EffectsModule.forRoot([]),
     MatIconModule, MatInputModule,MatTabsModule, MatFormFieldModule, NgFor, NgIf, MatButtonModule, MatDividerModule, MatIconModule,
-    FormsModule
+    FormsModule,
+    NgClass
   ],
   providers: [AuthService, BookService, CartService, FavoriteService, ReviewDiscussionService],
   bootstrap: [AppComponent]
