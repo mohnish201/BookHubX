@@ -1,0 +1,118 @@
+<div class="p-5 w-[95%] m-auto">
+  <div class="m-auto w-[300px]">
+    <img src="{{ authorDetails?.image }}" class="w-[100%]" alt="{{ authorDetails?.name }}" />
+    <p class="text-xl font-bold text-center p-2 text-gray-800">{{authorDetails?.name}}</p>
+  </div>
+
+
+  <p class="text-xl font-bold text-red-500">Biography :</p>
+
+  <p class="text-gray-950 text-lg text-justify">{{ authorDetails?.biography }}</p>
+
+  <!-- bookList -->
+  <div class="mt-10 text-center">
+    <p class="text-xl text-center font-bold text-black">Books Published By {{authorDetails?.name}}</p>
+    <div
+      class="p-6 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700"
+    >
+      <div class="flex flex-wrap justify-around gap-10">
+        <div *ngFor="let book of authorBooks; index as i">
+          <div class="shrink-0">
+            <div
+              class="m-auto flex justify-center w-[90%] relative image-container cursor-pointer"
+            >
+              <img
+                src="{{ book.image }}"
+                alt=""
+                class="h-[400px] md:h-[350px] rounded-2xl hover:drop-shadow-xl"
+              />
+              
+            </div>
+            <div class="ml-7 mr-7 mt-4 flex flex-col space-y-1">
+              <a
+                class="text-xl font-medium text-ellipsis whitespace-nowrap overflow-hidden w-[180px]"
+                >{{ book.title }}</a
+              >
+              <div class="flex items-center">
+                <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                  <svg
+                    class="w-4 h-4 text-orange-500"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 22 20"
+                  >
+                    <path
+                      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                    />
+                  </svg>
+                  <svg
+                    class="w-4 h-4 text-orange-500"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 22 20"
+                  >
+                    <path
+                      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                    />
+                  </svg>
+                  <svg
+                    class="w-4 h-4 text-orange-500"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 22 20"
+                  >
+                    <path
+                      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                    />
+                  </svg>
+                  <svg
+                    class="w-4 h-4 text-orange-500"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 22 20"
+                  >
+                    <path
+                      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                    />
+                  </svg>
+                  <svg
+                    class="w-4 h-4 text-gray-200 dark:text-gray-600"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 22 20"
+                  >
+                    <path
+                      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3"
+                  >5.0</span
+                >
+              </div>
+              <h4 class="font-bold mt-2">{{ book.author }}</h4>
+              <span class="text-2xl font-medium text-red-500 dark:text-white"
+                >${{ book.price.value }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="authorBooks.length === 0"
+        class="flex justify-center items-center"
+      >
+        <img
+          src="https://tjconcepts.in/wp-content/themes/tjcon/assets/img/norecordfound.png"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</div>

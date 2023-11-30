@@ -36,6 +36,9 @@ import { DiscussionComponent } from './components/discussion/discussion.componen
 import { FavoriteService } from './services/favorite.service';
 import { ReviewDiscussionService } from './services/review-discussion.service';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { AuthorPageComponent } from './components/author-page/author-page.component';
+import { AuthorDetailsComponent } from './components/author-details/author-details.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
     LoginPageComponent,
     SkeletonComponent,
     DiscussionComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    AuthorPageComponent,
+    AuthorDetailsComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,7 @@ authorRouter.get("/", auth, async (req, res) => {
     try {
       const author = await authorModel.find();
       if (author) {
-        res.send({authors: author});
+        res.send(author);
       } else {
         res.status(500).send("author not found");
       }

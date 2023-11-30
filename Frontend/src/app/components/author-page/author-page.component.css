@@ -1,0 +1,18 @@
+.ellipsis {
+    /* Set the height and overflow of the container */
+    max-height: 3em; /* Adjust the height according to the number of lines you want to display */
+    overflow: hidden;
+    position: relative;
+    line-height: 1.5; /* Set the line height for proper text display */
+  
+    /* Use the pseudo-element to display the ellipsis */
+  }
+  .ellipsis::after {
+    content: "...";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: white; /* Match with background color */
+    padding-left: 5px; /* Adjust spacing between text and ellipsis */
+  }
+  

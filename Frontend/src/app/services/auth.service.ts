@@ -23,6 +23,11 @@ export class AuthService {
     return this.http.post<any>("http://localhost:4800/auth/login", loginData)
   }
 
+  register(registerData:any):Observable<any>{
+    return this.http.post<any>("http://localhost:4800/auth/login", registerData)
+
+  }
+
   changeIsAuth(isAuth: boolean): void {
     this.isAuthSubject.next(isAuth);
   }

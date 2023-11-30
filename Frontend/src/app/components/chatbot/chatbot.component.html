@@ -1,6 +1,6 @@
 <div class="fixed bottom-10 rounded-lg right-4 z-10">
   <!-- Chat Bubble Icon/Button -->
-  <div class="w-28 h-28 border flex justify-center items-center">
+  <div class="w-28 h-28  flex justify-center items-center">
     <button
       (click)="toggleChatWindow()"
       class="text-white rounded-full p-3"
@@ -75,7 +75,7 @@
 
     <div id="chatMessages" class="overflow-y-auto max-h-96 h-full p-3">
       <!-- Loop through conversation array to display messages -->
-      <div class="flex justify-start mb-2 ">
+      <div class="flex justify-start mb-2">
         <div class="bg-gray-200 text-black rounded-lg p-2">
           {{ initMessage }}
         </div>
