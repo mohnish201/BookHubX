@@ -48,11 +48,21 @@
               </div>
 
               <div class="flex flex-col gap-10">
-                 <div class="flex gap-3 items-center justify-center">
-                  <button (click)="increaseQuantity(book)" class="border p-1 rounded-full bg-blue-600">➕</button>
+                <div class="flex gap-3 items-center justify-center">
+                  <button
+                    (click)="increaseQuantity(book)"
+                    class="border p-1 rounded-full bg-blue-600"
+                  >
+                    ➕
+                  </button>
                   <p class="text-lg font-medium">{{ book.quantity || 1 }}</p>
-                  <button (click)="decreaseQuantity(book)" class="border p-1 rounded-full bg-red-600">➖</button>
-                 </div>
+                  <button
+                    (click)="decreaseQuantity(book)"
+                    class="border p-1 rounded-full bg-red-600"
+                  >
+                    ➖
+                  </button>
+                </div>
                 <button
                   (click)="removeFromCart(book._id)"
                   mat-raised-button
@@ -109,6 +119,7 @@
           </table>
           <div class="m-auto w-[96%] my-10">
             <button
+              (click)="checkoutBtn()"
               [disabled]="subTotal === 0"
               type="button"
               class="text-white disabled:bg-blue-300 w-full disabled:cursor-not-allowed bg-[#2557D6] hover:bg-[#2557D6]/90 focus:ring-4 focus:ring-[#2557D6]/50 focus:outline-none font-medium rounded-md text-sm px-5 py-3 text-center inline-flex items-center justify-center dark:focus:ring-[#2557D6]/50 me-2 mb-2"
@@ -127,4 +138,41 @@
       </div>
     </div>
   </ng-template>
+</div>
+
+<div
+  class="overlay"
+  [style.display]="showOverlay ? 'flex' : 'none'"
+  id="overlay"
+>
+  <div class="popup" id="popup">
+    <h2>Order Successful!</h2>
+    <div class="flex justify-center items-center">
+
+      <svg
+      class="w-28 h-28"
+      viewBox="0 0 1024 1024"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="#000000"
+      stroke="#000000"
+      >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+      id="SVGRepo_tracerCarrier"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke="#CCCCCC"
+      stroke-width="2.048"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <path
+        fill="#23955a"
+        d="M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896zm-55.808 536.384-99.52-99.584a38.4 38.4 0 1 0-54.336 54.336l126.72 126.72a38.272 38.272 0 0 0 54.336 0l262.4-262.464a38.4 38.4 0 1 0-54.272-54.336L456.192 600.384z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+    <p>Your order has been placed successfully.</p>
+    <button id="closeButton" (click)="closeBtn()">Close</button>
+  </div>
 </div>

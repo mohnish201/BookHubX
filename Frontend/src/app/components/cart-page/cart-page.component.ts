@@ -1,5 +1,7 @@
+import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart.service';
 import { FavoriteService } from '../../services/favorite.service';
@@ -11,6 +13,7 @@ import { FavoriteService } from '../../services/favorite.service';
 })
 export class CartPageComponent implements OnInit {
 
+  showOverlay: boolean = false;
   cartList!: any[];
   loading: boolean = false;
   subTotal: number = 0.00;
@@ -19,7 +22,7 @@ export class CartPageComponent implements OnInit {
   cartLength: number = 0
   public skeleton = new Array(20).fill(0);
 
-  constructor(private authService: AuthService, private favoriteService: FavoriteService, private cartService: CartService, private _snackBar: MatSnackBar) { }
+  constructor(private authService: AuthService, private favoriteService: FavoriteService, private cartService: CartService, private _snackBar: MatSnackBar, private router:Router) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -74,5 +77,14 @@ export class CartPageComponent implements OnInit {
     snackBarRef.onAction().subscribe(() => {
       snackBarRef.dismiss();
     });
+  }
+
+  checkoutBtn(){
+    this.showOverlay=true
+  }
+
+  closeBtn(){
+    this.showOverlay = false
+    this.router.navigate(["/books"])
   }
 }

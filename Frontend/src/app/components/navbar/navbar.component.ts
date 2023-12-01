@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
     this.authService.getUserData().subscribe((data) => this.username = data?.username)
     this.cartService.getCartItems().subscribe((data) => this.cartLength = data?.userCart?.cart_books.length)
     this.favoriteService.getFavoriteItems().subscribe((data) => this.favoriteLength = data?.userFavorites?.favorite_books.length)
-    console.log(this.cartLength, this.favoriteLength)
+    // console.log(this.cartLength, this.favoriteLength)
   }
 
   ngOnInit(): void {

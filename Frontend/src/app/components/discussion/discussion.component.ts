@@ -35,7 +35,7 @@ export class DiscussionComponent implements OnChanges, OnInit {
   loadReviews() {
     if (this.book_id) {
       this.reviewDiscussionService.getReviews(this.book_id).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
 
         if (typeof data === "object" && data !== null) {
 
@@ -54,7 +54,7 @@ export class DiscussionComponent implements OnChanges, OnInit {
   loadDiscussions() {
     if (this.book_id) {
       this.reviewDiscussionService.getDiscussions(this.book_id).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
 
         if (typeof data === "object" && data !== null) {
 
@@ -76,7 +76,7 @@ export class DiscussionComponent implements OnChanges, OnInit {
     };
     console.log(this.book_id)
     this.reviewDiscussionService.postDiscussion(this.book_id, body).subscribe((data) =>{
-      console.log(data);
+      // console.log(data);
       let message = data.message.toString()
       this.openSnackBar(message, "close")
       this.loadDiscussions()

@@ -78,7 +78,7 @@ export class BooksPageComponent implements OnInit, OnDestroy {
     // this.store.dispatch(loadBooks())
     this.loading = true
     this.bookService.getbookData(query).subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.bookList = data;
       this.loading = false
     });
@@ -100,7 +100,7 @@ export class BooksPageComponent implements OnInit, OnDestroy {
 
 
 
-    console.log(this.selectedCategory)
+    // console.log(this.selectedCategory)
     this.fetchBookData()
   }
 
@@ -109,7 +109,7 @@ export class BooksPageComponent implements OnInit, OnDestroy {
     this.selectedAuthor = author;
 
 
-    console.log(this.selectedAuthor)
+    // console.log(this.selectedAuthor)
     this.fetchBookData()
   }
 

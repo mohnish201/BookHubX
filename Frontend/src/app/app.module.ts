@@ -39,6 +39,7 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { AuthorPageComponent } from './components/author-page/author-page.component';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import {Dialog, DIALOG_DATA, DialogModule} from '@angular/cdk/dialog';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { RegisterPageComponent } from './components/register-page/register-page.
     HttpClientModule,
     StoreModule.forRoot({ bookReducer: bookReducer }),
     EffectsModule.forRoot([]),
-    MatIconModule, MatInputModule,MatTabsModule, MatFormFieldModule, NgFor, NgIf, MatButtonModule, MatDividerModule, MatIconModule,
+    MatIconModule, MatInputModule,MatTabsModule,DialogModule, MatFormFieldModule, NgFor, NgIf, MatButtonModule, MatDividerModule, MatIconModule,
     FormsModule,
     NgClass
   ],
