@@ -1,8 +1,14 @@
+<img src="Frontend/src/assets/Bookorylogo.png" width="100px" alt="logo">
+
 # Bookory 
 
 ## Introduction
 
 **Bookory** is a comprehensive online platform that integrates a feature-rich bookstore with a vibrant reading community. Leveraging Angular for the frontend, this project offers users an immersive experience in discovering, purchasing, and engaging with books, fostering a community-driven environment for discussions, reviews, and recommendations. The backend can be developed using either Java or Node.js, and the database can be MySQL or MongoDB. Additionally, the project includes an intelligent chatbot service powered by GPT to assist users in finding books and authors based on their preferences.
+
+## **Platform Access**
+
+Access the Bookory platform through **[Live Preview](https://famous-torrone-146b14.netlify.app/)**
 
 ## Objective
 
