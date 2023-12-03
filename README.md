@@ -8,7 +8,7 @@
 
 ## **Platform Access**
 
-Access the Bookory platform through **[Live Preview](https://famous-torrone-146b14.netlify.app/)**
+Access the Bookory platform through **[Live Preview](https://bookory-bookstore.netlify.app/)**
 
 ## Objective
 
