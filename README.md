@@ -4,7 +4,7 @@
 
 ## Introduction
 
-**Bookory** is a comprehensive online platform that integrates a feature-rich bookstore with a vibrant reading community. Leveraging Angular for the frontend, this project offers users an immersive experience in discovering, purchasing, and engaging with books, fostering a community-driven environment for discussions, reviews, and recommendations. The backend can be developed using either Java or Node.js, and the database can be MySQL or MongoDB. Additionally, the project includes an intelligent chatbot service powered by GPT to assist users in finding books and authors based on their preferences.
+**Bookory** is a comprehensive online platform that integrates a feature-rich bookstore with a vibrant reading community. Leveraging Angular for the frontend, this project offers users an immersive experience in discovering, purchasing, and engaging with books, fostering a community-driven environment for discussions, reviews, and recommendations. The backend is developed using either Node.js and Mongo DB for Database. Additionally, the project includes an intelligent chatbot service powered by GPT to assist users in finding books and authors based on their preferences.
 
 ## **Platform Access**
 
