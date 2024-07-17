@@ -9,7 +9,7 @@ export class AuthService {
   private isAuthSubject: BehaviorSubject<boolean>
   private userDataSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     const storedIsAuth = localStorage.getItem('isAuth');
     const initialIsAuth = storedIsAuth ? JSON.parse(storedIsAuth) : false;
     this.isAuthSubject = new BehaviorSubject<boolean>(initialIsAuth);
@@ -20,11 +20,11 @@ export class AuthService {
   }
 
   login(loginData: any): Observable<any> {
-    return this.http.post<any>("http://localhost:4800/auth/login", loginData)
+    return this.http.post<any>("https://bookory-api.vercel.app/auth/login", loginData)
   }
 
-  register(registerData:any):Observable<any>{
-    return this.http.post<any>("http://localhost:4800/auth/register", registerData)
+  register(registerData: any): Observable<any> {
+    return this.http.post<any>("https://bookory-api.vercel.app/auth/register", registerData)
 
   }
 

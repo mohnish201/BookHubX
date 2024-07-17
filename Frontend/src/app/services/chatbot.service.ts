@@ -10,12 +10,12 @@ export class ChatbotService {
   constructor(private http: HttpClient) { }
 
   chat(body: any): Observable<any> {
-    return this.http.post<any>(`http://localhost:4800/chatbot`, body)
+    return this.http.post<any>(`https://bookory-api.vercel.app/chatbot`, body)
   }
 }
 
 
-export interface Conversation{
-  userMessage:String,
-  gptResponse:any
+export interface Conversation {
+  userMessage: String,
+  gptResponse: any
 }

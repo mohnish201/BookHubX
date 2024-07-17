@@ -10,21 +10,22 @@ import { AuthService } from './auth.service';
 })
 export class BookService {
 
-  constructor(private http: HttpClient, private authService:AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getbookData(q: query): Observable<BooksI[]> {
-    return this.http.get<BooksI[]>(`http://localhost:4800/books?q=${q.searchText}&authorName=${q.authorName}&bookTitle=${q.bookTitle}&category=${q.category}`)
+    return this.http.get<BooksI[]>(`https://bookory-api.vercel.app/books?q=${q.searchText}&authorName=${q.authorName}&bookTitle=${q.bookTitle}&category=${q.category}`)
   }
 
-  getbookDataById(id:any):Observable<BooksI[]>{
+  getbookDataById(id: any): Observable<BooksI[]> {
     let token = ""
-    this.authService.getUserData().subscribe((data) =>{ token = data?.token
-    } )
+    this.authService.getUserData().subscribe((data) => {
+      token = data?.token
+    })
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     })
-   return this.http.get<BooksI[]>(`http://localhost:4800/books/${id}`, {headers})
+    return this.http.get<BooksI[]>(`https://bookory-api.vercel.app/books/${id}`, { headers })
   }
 
 

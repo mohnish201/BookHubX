@@ -14,7 +14,7 @@ export class CartService {
 
   }
 
-  getCartItems():Observable<any>{
+  getCartItems(): Observable<any> {
     let token = ""
     this.authService.getUserData().subscribe((data) => {
       token = data?.token
@@ -23,10 +23,10 @@ export class CartService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     })
-    return this.http.get<any>("http://localhost:4800/cart", { headers })
+    return this.http.get<any>("https://bookory-api.vercel.app/cart", { headers })
   }
 
-  addToCart(patchData: any):Observable<any> {
+  addToCart(patchData: any): Observable<any> {
     let token = ""
     this.authService.getUserData().subscribe((data) => {
       token = data?.token
@@ -35,18 +35,18 @@ export class CartService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     })
-    return this.http.patch<any>("http://localhost:4800/cart/addBook", { book: patchData }, { headers })
+    return this.http.patch<any>("https://bookory-api.vercel.app/cart/addBook", { book: patchData }, { headers })
   }
 
-  
-  removeBookFromCart(id:any):Observable<any>{
+
+  removeBookFromCart(id: any): Observable<any> {
     let token = ""
-    this.authService.getUserData().subscribe((data) => {token = data?.token})
+    this.authService.getUserData().subscribe((data) => { token = data?.token })
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     })
-    return this.http.delete<any>(`http://localhost:4800/cart/removeBook/${id}`,{headers})
+    return this.http.delete<any>(`https://bookory-api.vercel.app/cart/removeBook/${id}`, { headers })
 
   }
 }

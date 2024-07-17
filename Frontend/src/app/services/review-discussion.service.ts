@@ -17,7 +17,7 @@ export class ReviewDiscussionService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     })
-    return this.http.get(`http://localhost:4800/reviews/${book_id}`, { headers })
+    return this.http.get(`https://bookory-api.vercel.app/reviews/${book_id}`, { headers })
   }
 
   postReview(book_id: any, body: any): Observable<any> {
@@ -28,7 +28,7 @@ export class ReviewDiscussionService {
       Authorization: `Bearer ${token}`
     })
 
-    return this.http.patch<any>(`http://localhost:4800/reviews/addReview/${book_id}`, body, { headers })
+    return this.http.patch<any>(`https://bookory-api.vercel.app/reviews/addReview/${book_id}`, body, { headers })
   }
 
   getDiscussions(book_id: any): Observable<any> {
@@ -39,7 +39,7 @@ export class ReviewDiscussionService {
       Authorization: `Bearer ${token}`
     })
 
-    return this.http.get<any>(`http://localhost:4800/discussion/${book_id}`, { headers })
+    return this.http.get<any>(`https://bookory-api.vercel.app/discussion/${book_id}`, { headers })
   }
 
 
@@ -51,7 +51,7 @@ export class ReviewDiscussionService {
       Authorization: `Bearer ${token}`
     })
 
-    return this.http.patch<any>(`http://localhost:4800/discussion/addComment/${book_id}`, body, {headers})
+    return this.http.patch<any>(`https://bookory-api.vercel.app/discussion/addComment/${book_id}`, body, { headers })
   }
 
 }
