@@ -1,14 +1,14 @@
 const express = require("express");
-const { connection } = require("./db");
+const { connection } = require("../db");
 const cors = require("cors");
-const { userRouter } = require("./Routes/userRoutes");
-const { bookRouter } = require("./Routes/bookRoutes");
-const { favoriteRouter } = require("./Routes/favoriteRoutes");
-const { authorRouter } = require("./Routes/authorRoutes");
-const { discussionRouter } = require("./Routes/discussionRouter");
-const { reviewRouter } = require("./Routes/reviewRouter");
-const {chatbotRouter} = require("./Routes/chatbotRouter");
-const { cartRouter } = require("./Routes/cartRouter");
+const { userRouter } = require("../Routes/userRoutes");
+const { bookRouter } = require("../Routes/bookRoutes");
+const { favoriteRouter } = require("../Routes/favoriteRoutes");
+const { authorRouter } = require("../Routes/authorRoutes");
+const { discussionRouter } = require("../Routes/discussionRouter");
+const { reviewRouter } = require("../Routes/reviewRouter");
+const { chatbotRouter } = require("../Routes/chatbotRouter");
+const { cartRouter } = require("../Routes/cartRouter");
 
 const app = express();
 
